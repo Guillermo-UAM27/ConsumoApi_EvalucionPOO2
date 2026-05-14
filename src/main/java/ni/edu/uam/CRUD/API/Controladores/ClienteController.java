@@ -23,27 +23,32 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
+    // Lista todos los clientes.
     @GetMapping
     public List<Cliente> getAllClientes() {
         return clienteService.getAllClientes();
     }
 
+    // Obtiene un cliente por id.
     @GetMapping("/{id}")
     public Cliente getClienteById(@PathVariable Long id) {
         return clienteService.getClienteById(id);
     }
 
+    // Crea un nuevo cliente.
     @PostMapping
     public Cliente saveCliente(@RequestBody Cliente cliente) {
         return clienteService.saveCliente(cliente);
     }
 
+    // Actualiza un cliente existente.
     @PutMapping("/{id}")
     public Cliente updateCliente(@PathVariable long id, @RequestBody Cliente cliente) {
         cliente.setId(id);
         return clienteService.saveCliente(cliente);
     }
 
+    // Elimina un cliente por id.
     @DeleteMapping("/{id}")
     public void deleteCliente(@PathVariable long id) {
         clienteService.deleteCliente(id);

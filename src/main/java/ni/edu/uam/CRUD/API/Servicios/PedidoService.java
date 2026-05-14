@@ -15,22 +15,27 @@ public class PedidoService {
         this.pedidoRepository = pedidoRepository;
     }
 
+    // Retorna todos los pedidos.
     public List<Pedido> getAllPedidos() {
         return pedidoRepository.findAll();
     }
 
+    // Retorna pedidos por cliente.
     public List<Pedido> getPedidosByClienteId(Long clienteId) {
         return pedidoRepository.findByClienteId(clienteId);
     }
 
+    // Retorna un pedido por id.
     public Pedido getPedidoById(Long id) {
         return pedidoRepository.findById(id).orElse(null);
     }
 
+    // Guarda o actualiza un pedido.
     public Pedido savePedido(Pedido pedido) {
         return pedidoRepository.save(pedido);
     }
 
+    // Elimina un pedido por id.
     public void deletePedido(long id) {
         pedidoRepository.deleteById(id);
     }

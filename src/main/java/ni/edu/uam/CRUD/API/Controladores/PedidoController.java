@@ -29,6 +29,7 @@ public class PedidoController {
         this.clienteService = clienteService;
     }
 
+    // Lista pedidos; opcionalmente filtra por clienteId.
     @GetMapping
     public List<Pedido> getAllPedidos(@RequestParam(name = "clienteId", required = false) Long clienteId) {
         if (clienteId == null) {
@@ -37,11 +38,13 @@ public class PedidoController {
         return pedidoService.getPedidosByClienteId(clienteId);
     }
 
+    // Obtiene un pedido por id.
     @GetMapping("/{id}")
     public Pedido getPedidoById(@PathVariable Long id) {
         return pedidoService.getPedidoById(id);
     }
 
+    // Crea un pedido vinculado a un cliente.
     @PostMapping
     public Pedido savePedido(@RequestBody Pedido pedido) {
         Cliente cliente = clienteService.getClienteById(pedido.getCliente().getId());
@@ -55,6 +58,7 @@ public class PedidoController {
         return pedidoService.savePedido(pedido);
     }
 
+    // Actualiza un pedido existente.
     @PutMapping("/{id}")
     public Pedido updatePedido(@PathVariable long id, @RequestBody Pedido pedido) {
         Cliente cliente = clienteService.getClienteById(pedido.getCliente().getId());
@@ -66,6 +70,7 @@ public class PedidoController {
         return pedidoService.savePedido(pedido);
     }
 
+    // Elimina un pedido por id.
     @DeleteMapping("/{id}")
     public void deletePedido(@PathVariable long id) {
         pedidoService.deletePedido(id);

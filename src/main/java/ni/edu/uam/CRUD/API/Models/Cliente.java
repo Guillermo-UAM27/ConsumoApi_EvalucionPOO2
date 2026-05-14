@@ -29,13 +29,16 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Nombre del cliente.
     @NotBlank
     private String nombre;
 
+    // Correo valido del cliente.
     @NotBlank
     @Email
     private String email;
 
+    // Relacion 1-N: cliente -> pedidos.
     @JsonManagedReference
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedido> pedidos = new ArrayList<>();

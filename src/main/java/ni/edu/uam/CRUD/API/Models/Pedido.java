@@ -31,16 +31,20 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Descripcion del pedido.
     @NotBlank
     private String descripcion;
 
+    // Monto total positivo.
     @NotNull
     @Positive
     private BigDecimal total;
 
+    // Fecha del pedido.
     @NotNull
     private LocalDate fecha;
 
+    // Relacion N-1: pedido -> cliente.
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
